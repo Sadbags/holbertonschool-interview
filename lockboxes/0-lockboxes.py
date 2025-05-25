@@ -1,13 +1,16 @@
 #!/usr/bin/python3
-"""
-    Check if all boxes can be opened, starting from box 0.
-"""
+"""Check if all boxes can be opened, starting from box 0."""
+
 
 def canUnlockAll(boxes):
     """
-    Returns True if all boxes can be opened, otherwise False.
+    Determine if all boxes can be opened.
 
-    :param boxes: List of lists with keys to other boxes.
+    Args:
+        boxes (list of lists): Each index contains a list of keys.
+
+    Returns:
+        bool: True if all boxes can be opened, False otherwise.
     """
     if not isinstance(boxes, list):
         return False
