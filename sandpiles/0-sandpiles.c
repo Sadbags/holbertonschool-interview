@@ -42,7 +42,7 @@ void grid_print(int grid[3][3])
  * grid_is_ok - Checks if all values in a 3x3 grid are less than or equal to 3.
  * @grid: 3x3 grid to check.
  *
- * Return: 1 if grid is valid, 0 otherwise.
+ * Return: 1 if all values are ≤ 3, 0 otherwise.
  */
 int grid_is_ok(int grid[3][3])
 {
@@ -60,7 +60,7 @@ int grid_is_ok(int grid[3][3])
 }
 
 /**
- * grid_change - Applies one iteration of the sandpile toppling operation.
+ * grid_change - Performs one iteration of sandpile toppling.
  * @grid1: 3x3 grid to modify.
  */
 void grid_change(int grid1[3][3])
