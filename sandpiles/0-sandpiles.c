@@ -2,12 +2,10 @@
 #include <stdio.h>
 
 /**
- * grid_addition - add 2 grids
- *
- * @grid1: first matrix
- * @grid2: second matrix
+ * grid_addition - Adds two 3x3 grids element-wise.
+ * @grid1: First 3x3 grid.
+ * @grid2: Second 3x3 grid.
  */
-
 void grid_addition(int grid1[3][3], int grid2[3][3])
 {
 	int i, j;
@@ -15,22 +13,17 @@ void grid_addition(int grid1[3][3], int grid2[3][3])
 	for (i = 0; i < 3; i++)
 	{
 		for (j = 0; j < 3; j++)
-		{
 			grid1[i][j] = grid1[i][j] + grid2[i][j];
-		}
 	}
 }
 
 /**
- * grid_print - print a grid
- *
- * @grid: matrix
+ * grid_print - Prints a 3x3 grid.
+ * @grid: 3x3 grid to print.
  */
-
 void grid_print(int grid[3][3])
 {
-	int i = 0;
-	int j = 0;
+	int i, j;
 
 	printf("=\n");
 	for (i = 0; i < 3; i++)
@@ -46,16 +39,14 @@ void grid_print(int grid[3][3])
 }
 
 /**
- * grid_is_ok - check if a grid is ok
+ * grid_is_ok - Checks if all values in a 3x3 grid are less than or equal to 3.
+ * @grid: 3x3 grid to check.
  *
- * @grid: matrix
- * Return: 1 if is ok or 0 if not
+ * Return: 1 if grid is valid, 0 otherwise.
  */
-
 int grid_is_ok(int grid[3][3])
 {
-	int i = 0;
-	int j = 0;
+	int i, j;
 
 	for (i = 0; i < 3; i++)
 	{
@@ -69,15 +60,12 @@ int grid_is_ok(int grid[3][3])
 }
 
 /**
- * grid_change - change a grid value
- *
- * @grid1: matrix
+ * grid_change - Applies one iteration of the sandpile toppling operation.
+ * @grid1: 3x3 grid to modify.
  */
-
 void grid_change(int grid1[3][3])
 {
-	int i = 0;
-	int j = 0;
+	int i, j;
 	int gridx[3][3];
 
 	for (i = 0; i < 3; i++)
@@ -92,14 +80,14 @@ void grid_change(int grid1[3][3])
 		{
 			if (grid1[i][j] > 3)
 			{
-				grid1[i][j] = grid1[i][j] - 4;
-				if ((i - 1) >= 0 && (i - 1) < 3)
+				grid1[i][j] -= 4;
+				if (i - 1 >= 0)
 					gridx[i - 1][j] += 1;
-				if ((j - 1) >= 0 && (j - 1) < 3)
+				if (j - 1 >= 0)
 					gridx[i][j - 1] += 1;
-				if ((i + 1) >= 0 && (i + 1) < 3)
+				if (i + 1 < 3)
 					gridx[i + 1][j] += 1;
-				if ((j + 1) >= 0 && (j + 1) < 3)
+				if (j + 1 < 3)
 					gridx[i][j + 1] += 1;
 			}
 		}
@@ -108,12 +96,10 @@ void grid_change(int grid1[3][3])
 }
 
 /**
- * sandpiles_sum - sum 2 sandpiles
- *
- * @grid1: first matrix
- * @grid2: second matrix
+ * sandpiles_sum - Adds two sandpiles and stabilizes the result.
+ * @grid1: First 3x3 grid.
+ * @grid2: Second 3x3 grid.
  */
-
 void sandpiles_sum(int grid1[3][3], int grid2[3][3])
 {
 	grid_addition(grid1, grid2);
