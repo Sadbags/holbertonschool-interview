@@ -1,68 +1,37 @@
 #!/usr/bin/python3
-"""N Queens"""
+"""N queens puzzle."""
 import sys
 
 
-def format_requirements(board):
-    """Prints according to requirements"""
-    ret = []
-    for i in range(len(board)):
-        colIdx = board[i].index(1)
-        ret.append([i, colIdx])
-    print(ret)
-
-
-def is_valid_queen(board, curCol, row, n):
-    """Checks if element is a valid queen"""
-    # Check prev columns
-    for i in range(curCol):
-        if board[row][i] == 1:
+def cposition(b, row, col):
+    """Check position."""
+    for c in range(col):
+        if b[c] is row or abs(b[c] - row) is abs(c - col):
             return False
-    # Check for upper diagonal
-    i = row
-    j = curCol
-    while i >= 0 and j >= 0:
-        if board[i][j] == 1:
-            return False
-        i -= 1
-        j -= 1
-    # Check for lower diagonal
-    i = row
-    j = curCol
-    while i < n and j >= 0:
-        if board[i][j] == 1:
-            return False
-        i += 1
-        j -= 1
     return True
 
 
-def nQueens(board, curCol, n):
-    """Recursive call that places queens in all the
-    posible positions of the board"""
-    stat = False
-    if curCol == n:
-        format_requirements(board)
-        return True
-    for row in range(0, n):
-        if is_valid_queen(board, curCol, row, n):
-            board[row][curCol] = 1
-            stat = nQueens(board, curCol + 1, n) or stat
-            board[row][curCol] = 0
-    return stat
+def check(b, col):
+    """Backtrack."""
+    n = len(b)
+    if col is n:
+        print(str([[c, b[c]] for c in range(n)]))
+        return
+    for row in range(n):
+        if cposition(b, row, col):
+            b[col] = row
+            check(b, col + 1)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     if len(sys.argv) != 2:
         print("Usage: nqueens N")
-        exit(1)
-    if not sys.argv[1].isdigit():
+        sys.exit(1)
+    if sys.argv[1].isdigit() is False:
         print("N must be a number")
-        exit(1)
-    n = int(sys.argv[1])
-    if n < 4:
+        sys.exit(1)
+    if int(sys.argv[1]) < 4:
         print("N must be at least 4")
-        exit(1)
-    board = [[0 for i in range(n)] for j in range(n)]
-    # first col is 0
-    nQueens(board, 0, n)
+        sys.exit(1)
+    b = [0 for col in range(int(sys.argv[1]))]
+    check(b, 0)
