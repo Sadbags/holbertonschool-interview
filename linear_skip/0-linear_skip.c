@@ -28,6 +28,7 @@ skiplist_t *find_value(skiplist_t *list, int value)
 	return (NULL);
 }
 
+
 /**
  * linear_skip - searches for a value in a sorted skip list of integers.
  *
